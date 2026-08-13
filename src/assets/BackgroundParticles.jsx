@@ -20,16 +20,23 @@ export const BackgroundParticles = () => {
 
     window.addEventListener('resize', handleResize);
 
-    // Create particles
-    const particleCount = Math.min(Math.floor(width / 18), 65);
+    // Create particles with vibrant tech palette
+    const colors = [
+      'rgba(6, 182, 212, ',   // cyan
+      'rgba(139, 92, 246, ',  // violet
+      'rgba(236, 72, 153, ',  // pink
+      'rgba(16, 185, 129, '   // emerald
+    ];
+
+    const particleCount = Math.min(Math.floor(width / 16), 75);
     const particles = Array.from({ length: particleCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-      radius: Math.random() * 1.6 + 0.8,
-      color: Math.random() > 0.4 ? 'rgba(6, 182, 212, ' : 'rgba(139, 92, 246, ',
-      alpha: Math.random() * 0.5 + 0.2
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      radius: Math.random() * 1.8 + 0.8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: Math.random() * 0.55 + 0.25
     }));
 
     // Draw loop
@@ -37,9 +44,9 @@ export const BackgroundParticles = () => {
       ctx.clearRect(0, 0, width, height);
 
       // Draw faint background grid
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.02)';
       ctx.lineWidth = 1;
-      const gridSize = 40;
+      const gridSize = 45;
       for (let x = 0; x < width; x += gridSize) {
         ctx.beginPath();
         ctx.moveTo(x, 0);
@@ -69,17 +76,17 @@ export const BackgroundParticles = () => {
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
 
-        // Connect nearby nodes
+        // Connect nearby nodes with multi-toned gradients
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 130) {
-            const lineAlpha = (1 - dist / 130) * 0.15;
-            ctx.strokeStyle = `rgba(6, 182, 212, ${lineAlpha})`;
-            ctx.lineWidth = 0.8;
+          if (dist < 135) {
+            const lineAlpha = (1 - dist / 135) * 0.18;
+            ctx.strokeStyle = `${p.color}${lineAlpha})`;
+            ctx.lineWidth = 0.85;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);

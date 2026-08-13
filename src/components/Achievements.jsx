@@ -17,17 +17,18 @@ export const Achievements = () => {
     const y = (rect.top + rect.height / 2) / window.innerHeight;
 
     confetti({
-      particleCount: 45,
-      spread: 60,
+      particleCount: 55,
+      spread: 70,
       origin: { x, y },
-      colors: ['#06b6d4', '#8b5cf6', '#f59e0b']
+      colors: ['#06b6d4', '#8b5cf6', '#f59e0b', '#ec4899']
     });
   };
 
   return (
-    <section id="achievements" className="relative py-24 bg-dark-900 overflow-hidden">
+    <section id="achievements" className="relative py-28 bg-dark-950 overflow-hidden">
       {/* Glow ambient background */}
-      <div className="absolute top-1/2 right-10 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[28rem] h-[28rem] bg-brand-amber/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[28rem] h-[28rem] bg-brand-cyan/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -38,7 +39,7 @@ export const Achievements = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-mono font-semibold uppercase tracking-wider mb-3"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-amber/10 border border-brand-amber/30 text-brand-amber text-xs font-mono font-semibold uppercase tracking-wider mb-3 shadow-[0_0_12px_rgba(245,158,11,0.2)]"
           >
             <Trophy className="w-3.5 h-3.5" />
             <span>Competitive Programming</span>
@@ -67,39 +68,40 @@ export const Achievements = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
+                whileHover={{ y: -6, scale: 1.02 }}
                 onClick={triggerConfetti}
-                className="group relative rounded-3xl p-8 bg-dark-800/80 border border-white/10 backdrop-blur-xl hover:border-brand-cyan/40 hover:bg-dark-700/80 transition-all duration-300 shadow-xl flex flex-col justify-between cursor-pointer"
+                className="group relative rounded-3xl p-8 bg-dark-850/70 border border-white/10 backdrop-blur-2xl hover:border-brand-amber/50 hover:bg-dark-800/90 transition-all duration-300 shadow-2xl flex flex-col justify-between cursor-pointer"
               >
                 <div>
                   {/* Top Badge & Platform */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-dark-900 border border-white/10 flex items-center justify-center text-brand-cyan group-hover:scale-110 group-hover:bg-brand-cyan group-hover:text-dark-900 transition-all">
+                    <div className="w-13 h-13 p-3 rounded-2xl bg-gradient-to-br from-brand-amber/20 via-brand-cyan/15 to-brand-purple/20 border border-brand-amber/30 flex items-center justify-center text-brand-amber group-hover:scale-110 group-hover:bg-brand-amber group-hover:text-dark-950 transition-all shadow-md">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold bg-dark-900 border ${item.color}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-mono font-bold bg-dark-950 border ${item.color} shadow-sm`}>
                       {item.badge}
                     </span>
                   </div>
 
                   {/* Stat Number */}
                   <div className="space-y-1 mb-4">
-                    <div className="text-4xl sm:text-5xl font-extrabold text-white font-mono tracking-tight group-hover:text-brand-cyan transition-colors">
+                    <div className="text-4xl sm:text-5xl font-extrabold text-white font-mono tracking-tight group-hover:text-brand-amber transition-colors">
                       {item.stat}
                     </div>
-                    <div className="text-base font-bold text-slate-300">
+                    <div className="text-base font-bold text-slate-200">
                       {item.platform} — {item.label}
                     </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
                     {item.description}
                   </p>
                 </div>
 
                 {/* External Link */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400 group-hover:text-brand-cyan transition-colors">
-                  <span className="flex items-center gap-1">
-                    <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between font-mono text-xs text-slate-400 group-hover:text-brand-amber transition-colors">
+                  <span className="flex items-center gap-1.5 font-semibold text-slate-300">
+                    <Star className="w-3.5 h-3.5 text-brand-amber fill-brand-amber animate-pulse" />
                     Verified Performance
                   </span>
                   <a
@@ -107,9 +109,9 @@ export const Achievements = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={(e) => e.stopPropagation()}
-                    className="p-2 rounded-lg bg-dark-900 border border-white/10 hover:border-brand-cyan text-slate-300 hover:text-white transition-colors"
+                    className="p-2 rounded-xl bg-dark-950 border border-white/10 hover:border-brand-amber text-slate-300 hover:text-white transition-all hover:scale-110 shadow-sm"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 text-brand-amber" />
                   </a>
                 </div>
               </motion.div>

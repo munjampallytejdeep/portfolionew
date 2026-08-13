@@ -9,6 +9,7 @@ import { Achievements } from './components/Achievements';
 import { Education } from './components/Education';
 import { Leadership } from './components/Leadership';
 import { Certifications } from './components/Certifications';
+import { ResumeSection } from './components/ResumeSection';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
@@ -16,7 +17,7 @@ export function App() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'achievements', 'education', 'experience', 'certifications', 'contact'];
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'achievements', 'education', 'experience', 'certifications', 'resume', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -55,6 +56,7 @@ export function App() {
         <Education />
         <Leadership />
         <Certifications />
+        <ResumeSection />
         <Contact />
       </main>
 
